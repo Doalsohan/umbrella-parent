@@ -1,0 +1,21 @@
+server:
+  port: 5201
+spring:
+  application:
+    name: app-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 120.48.86.143:8848
+
+dubbo:
+  application:
+    name: dubbo-consumer
+    qos-port: 2223
+  registry:
+    address: nacos://120.48.86.143:8848
+  protocol:
+    name: dubbo
+    port: -1
+  scan:
+    base-packages: com.umbrella
