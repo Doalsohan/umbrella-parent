@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/umbrella-chapter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/umbrella-chapter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/umbrella-chapter/umbrella-boot/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/umbrella-chapter/umbrella-boot/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/umbrella-chapter/umbrella-cloud/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/umbrella-chapter/umbrella-cloud/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/umbrella-chapter/umbrella-cloud/umbrella-cloud-alibaba/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/umbrella-chapter/umbrella-cloud/umbrella-cloud-alibaba/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/umbrella-chapter/umbrella-cloud/umbrella-cloud-alibaba/umbrella-business-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/umbrella-chapter/umbrella-cloud/umbrella-cloud-alibaba/umbrella-business-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/umbrella-chapter/umbrella-cloud/umbrella-cloud-alibaba/umbrella-dubbo-consumer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/umbrella-chapter/umbrella-cloud/umbrella-cloud-alibaba/umbrella-dubbo-consumer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/umbrella-chapter/umbrella-cloud/umbrella-cloud-alibaba/umbrella-dubbo-producer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/umbrella-chapter/umbrella-cloud/umbrella-cloud-alibaba/umbrella-dubbo-producer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/umbrella-chapter/umbrella-cloud/umbrella-cloud-discovery/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/umbrella-chapter/umbrella-cloud/umbrella-cloud-discovery/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
