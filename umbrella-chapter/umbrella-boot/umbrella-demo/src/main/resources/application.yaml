@@ -1,0 +1,33 @@
+server:
+  port: 4001
+spring:
+  datasource:
+    url: jdbc:mysql://120.48.86.143:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: Doalso@2311#$9
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  elasticsearch:
+    rest:
+      uris: https://es.t.shutu.tech
+      username: elastic
+      password: Ab12345678
+  data:
+    mongodb:
+      uri: mongodb://wfc:cp9TmGi5QoARVld@120.48.86.143:27017/test
+
+rocketmq:
+  name-server: 120.48.86.143:9876
+  producer:
+    group: Umbrella-Producer-Group
+    #消息发送的超时时间 默认3000ms
+    send-message-timeout: 3000
+    #消息达到4096字节的时候，消息就会被压缩。默认 4096
+    compress-message-body-threshold: 4096
+    #最大的消息限制，默认为128K
+    max-message-size: 4194304
+    #同步消息发送失败重试次数
+    retry-times-when-send-failed: 3
+    #在内部发送失败时是否重试其他代理，这个参数在有多个broker时才生效
+    retry-next-server: true
+    #异步消息发送失败重试的次数
+    retry-times-when-send-async-failed: 3
