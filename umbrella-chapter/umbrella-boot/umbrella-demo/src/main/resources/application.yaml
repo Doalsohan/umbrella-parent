@@ -8,9 +8,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   elasticsearch:
     rest:
-      uris: https://es.t.shutu.tech
+      uris: https://120.48.86.143：9200
       username: elastic
-      password: Ab12345678
+      password: N4cTe-C-OtslAeAYaZMg
   data:
     mongodb:
       uri: mongodb://wfc:cp9TmGi5QoARVld@120.48.86.143:27017/test
