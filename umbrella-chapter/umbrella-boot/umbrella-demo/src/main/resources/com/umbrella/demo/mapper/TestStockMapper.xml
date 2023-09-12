@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.umbrella.demo.mapper.TestStockMapper">
+  <resultMap id="BaseResultMap" type="com.umbrella.demo.entity.TestStock">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="stock" jdbcType="INTEGER" property="stock" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_num" jdbcType="VARCHAR" property="goodsNum" />
+    <result column="supplier_id" jdbcType="INTEGER" property="supplierId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    ID, stock, goods_name, goods_num, supplier_id
+  </sql>
+  <select id="selectByExample" parameterType="com.umbrella.demo.entity.example.TestStockExample" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from test_stock
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExampleSelective" parameterType="map" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    select
+    <if test="example != null and example.distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach collection="selective" item="column" separator=",">
+          ${column.aliasedEscapedColumnName}
+        </foreach>
+      </when>
+      <otherwise>
+        <include refid="Base_Column_List" />
+      </otherwise>
+    </choose>
+    from test_stock
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+    <if test="example != null and example.orderByClause != null">
+      order by ${example.orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from test_stock
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByPrimaryKeySelective" parameterType="map" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    select
+    'true' as QUERYID,
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach collection="selective" item="column" separator=",">
+          ${column.aliasedEscapedColumnName}
+        </foreach>
+      </when>
+      <otherwise>
+        <include refid="Base_Column_List" />
+      </otherwise>
+    </choose>
+    from test_stock
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    delete from test_stock
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.umbrella.demo.entity.example.TestStockExample">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    delete from test_stock
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.umbrella.demo.entity.TestStock">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    insert into test_stock (ID, stock, goods_name, 
+      goods_num, supplier_id)
+    values (#{id,jdbcType=BIGINT}, #{stock,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, 
+      #{goodsNum,jdbcType=VARCHAR}, #{supplierId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="map">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    insert into test_stock
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach close=")" collection="selective" item="column" open="(" separator=",">
+          ${column.escapedColumnName}
+        </foreach>
+      </when>
+      <otherwise>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+          <if test="record.id != null">
+            ID,
+          </if>
+          <if test="record.stock != null">
+            stock,
+          </if>
+          <if test="record.goodsName != null">
+            goods_name,
+          </if>
+          <if test="record.goodsNum != null">
+            goods_num,
+          </if>
+          <if test="record.supplierId != null">
+            supplier_id,
+          </if>
+        </trim>
+        <trim prefix="(" suffix=")" suffixOverrides="," />
+      </otherwise>
+    </choose>
+    values
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach close=")" collection="selective" item="column" open="(" separator=",">
+          #{record.${column.javaProperty},jdbcType=${column.jdbcType}}
+        </foreach>
+      </when>
+      <otherwise>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+          <if test="record.id != null">
+            #{record.id,jdbcType=BIGINT},
+          </if>
+          <if test="record.stock != null">
+            #{record.stock,jdbcType=INTEGER},
+          </if>
+          <if test="record.goodsName != null">
+            #{record.goodsName,jdbcType=VARCHAR},
+          </if>
+          <if test="record.goodsNum != null">
+            #{record.goodsNum,jdbcType=VARCHAR},
+          </if>
+          <if test="record.supplierId != null">
+            #{record.supplierId,jdbcType=INTEGER},
+          </if>
+        </trim>
+      </otherwise>
+    </choose>
+  </insert>
+  <select id="countByExample" parameterType="com.umbrella.demo.entity.example.TestStockExample" resultType="java.lang.Long">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    select count(*) from test_stock
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    update test_stock
+    SET
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach collection="selective" item="column" separator=",">
+          ${column.escapedColumnName} = #{record.${column.javaProperty},jdbcType=${column.jdbcType}}
+        </foreach>
+      </when>
+      <otherwise>
+        <trim suffixOverrides=",">
+          <if test="record.id != null">
+            ID = #{record.id,jdbcType=BIGINT},
+          </if>
+          <if test="record.stock != null">
+            stock = #{record.stock,jdbcType=INTEGER},
+          </if>
+          <if test="record.goodsName != null">
+            goods_name = #{record.goodsName,jdbcType=VARCHAR},
+          </if>
+          <if test="record.goodsNum != null">
+            goods_num = #{record.goodsNum,jdbcType=VARCHAR},
+          </if>
+          <if test="record.supplierId != null">
+            supplier_id = #{record.supplierId,jdbcType=INTEGER},
+          </if>
+        </trim>
+      </otherwise>
+    </choose>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    update test_stock
+    set ID = #{record.id,jdbcType=BIGINT},
+      stock = #{record.stock,jdbcType=INTEGER},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      goods_num = #{record.goodsNum,jdbcType=VARCHAR},
+      supplier_id = #{record.supplierId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="map">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    update test_stock
+    SET
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach collection="selective" item="column" separator=",">
+          ${column.escapedColumnName} = #{record.${column.javaProperty},jdbcType=${column.jdbcType}}
+        </foreach>
+      </when>
+      <otherwise>
+        <trim suffixOverrides=",">
+          <if test="record.stock != null">
+            stock = #{record.stock,jdbcType=INTEGER},
+          </if>
+          <if test="record.goodsName != null">
+            goods_name = #{record.goodsName,jdbcType=VARCHAR},
+          </if>
+          <if test="record.goodsNum != null">
+            goods_num = #{record.goodsNum,jdbcType=VARCHAR},
+          </if>
+          <if test="record.supplierId != null">
+            supplier_id = #{record.supplierId,jdbcType=INTEGER},
+          </if>
+        </trim>
+      </otherwise>
+    </choose>
+    where ID = #{record.id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.umbrella.demo.entity.TestStock">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    update test_stock
+    set stock = #{stock,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_num = #{goodsNum,jdbcType=VARCHAR},
+      supplier_id = #{supplierId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectOneByExample" parameterType="com.umbrella.demo.entity.example.TestStockExample" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    select
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from test_stock
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    limit 1
+  </select>
+  <select id="selectOneByExampleSelective" parameterType="map" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    select
+    'true' as QUERYID,
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach collection="selective" item="column" separator=",">
+          ${column.aliasedEscapedColumnName}
+        </foreach>
+      </when>
+      <otherwise>
+        <include refid="Base_Column_List" />
+      </otherwise>
+    </choose>
+    from test_stock
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+    <if test="example != null and example.orderByClause != null">
+      order by ${example.orderByClause}
+    </if>
+    limit 1
+  </select>
+  <insert id="batchInsert" parameterType="map">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    insert into test_stock
+    (ID, stock, goods_name, goods_num, supplier_id)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.stock,jdbcType=INTEGER}, #{item.goodsName,jdbcType=VARCHAR}, 
+        #{item.goodsNum,jdbcType=VARCHAR}, #{item.supplierId,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="map">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    insert into test_stock (
+    <foreach collection="selective" item="column" separator=",">
+      ${column.escapedColumnName}
+    </foreach>
+    )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (
+      <foreach collection="selective" item="column" separator=",">
+        <if test="'ID'.toString() == column.value">
+          #{item.id,jdbcType=BIGINT}
+        </if>
+        <if test="'stock'.toString() == column.value">
+          #{item.stock,jdbcType=INTEGER}
+        </if>
+        <if test="'goods_name'.toString() == column.value">
+          #{item.goodsName,jdbcType=VARCHAR}
+        </if>
+        <if test="'goods_num'.toString() == column.value">
+          #{item.goodsNum,jdbcType=VARCHAR}
+        </if>
+        <if test="'supplier_id'.toString() == column.value">
+          #{item.supplierId,jdbcType=INTEGER}
+        </if>
+      </foreach>
+      )
+    </foreach>
+  </insert>
+  <insert id="upsertSelective" parameterType="map">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    insert into test_stock
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach close=")" collection="selective" item="column" open="(" separator=",">
+          ${column.escapedColumnName}
+        </foreach>
+      </when>
+      <otherwise>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+          <if test="record.id != null">
+            ID,
+          </if>
+          <if test="record.stock != null">
+            stock,
+          </if>
+          <if test="record.goodsName != null">
+            goods_name,
+          </if>
+          <if test="record.goodsNum != null">
+            goods_num,
+          </if>
+          <if test="record.supplierId != null">
+            supplier_id,
+          </if>
+        </trim>
+        <trim prefix="(" suffix=")" suffixOverrides="," />
+      </otherwise>
+    </choose>
+    values
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach close=")" collection="selective" item="column" open="(" separator=",">
+          #{record.${column.javaProperty},jdbcType=${column.jdbcType}}
+        </foreach>
+      </when>
+      <otherwise>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+          <if test="record.id != null">
+            #{record.id,jdbcType=BIGINT},
+          </if>
+          <if test="record.stock != null">
+            #{record.stock,jdbcType=INTEGER},
+          </if>
+          <if test="record.goodsName != null">
+            #{record.goodsName,jdbcType=VARCHAR},
+          </if>
+          <if test="record.goodsNum != null">
+            #{record.goodsNum,jdbcType=VARCHAR},
+          </if>
+          <if test="record.supplierId != null">
+            #{record.supplierId,jdbcType=INTEGER},
+          </if>
+        </trim>
+      </otherwise>
+    </choose>
+    on duplicate key update 
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach collection="selective" item="column" separator=",">
+          ${column.escapedColumnName} = #{record.${column.javaProperty},jdbcType=${column.jdbcType}}
+        </foreach>
+      </when>
+      <otherwise>
+        <trim suffixOverrides=",">
+          <if test="record.id != null">
+            ID = #{record.id,jdbcType=BIGINT},
+          </if>
+          <if test="record.stock != null">
+            stock = #{record.stock,jdbcType=INTEGER},
+          </if>
+          <if test="record.goodsName != null">
+            goods_name = #{record.goodsName,jdbcType=VARCHAR},
+          </if>
+          <if test="record.goodsNum != null">
+            goods_num = #{record.goodsNum,jdbcType=VARCHAR},
+          </if>
+          <if test="record.supplierId != null">
+            supplier_id = #{record.supplierId,jdbcType=INTEGER},
+          </if>
+        </trim>
+      </otherwise>
+    </choose>
+  </insert>
+  <insert id="upsert" parameterType="com.umbrella.demo.entity.TestStock">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    insert into test_stock
+    (ID, stock, goods_name, goods_num, supplier_id)
+    values
+    (#{id,jdbcType=BIGINT}, #{stock,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, 
+      #{goodsNum,jdbcType=VARCHAR}, #{supplierId,jdbcType=INTEGER})
+    on duplicate key update 
+    ID = #{id,jdbcType=BIGINT}, 
+    stock = #{stock,jdbcType=INTEGER}, 
+    goods_name = #{goodsName,jdbcType=VARCHAR}, 
+    goods_num = #{goodsNum,jdbcType=VARCHAR}, 
+    supplier_id = #{supplierId,jdbcType=INTEGER}
+  </insert>
+  <insert id="batchUpsertSelective" parameterType="map">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    insert into test_stock (
+    <foreach collection="selective" item="column" separator=",">
+      ${column.escapedColumnName}
+    </foreach>
+    )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (
+      <foreach collection="selective" item="column" separator=",">
+        <if test="'ID'.toString() == column.value">
+          #{item.id,jdbcType=BIGINT}
+        </if>
+        <if test="'stock'.toString() == column.value">
+          #{item.stock,jdbcType=INTEGER}
+        </if>
+        <if test="'goods_name'.toString() == column.value">
+          #{item.goodsName,jdbcType=VARCHAR}
+        </if>
+        <if test="'goods_num'.toString() == column.value">
+          #{item.goodsNum,jdbcType=VARCHAR}
+        </if>
+        <if test="'supplier_id'.toString() == column.value">
+          #{item.supplierId,jdbcType=INTEGER}
+        </if>
+      </foreach>
+      )
+    </foreach>
+    on duplicate key update 
+    <foreach collection="selective" item="column" separator=",">
+      ${column.escapedColumnName} = values(${column.escapedColumnName})
+    </foreach>
+  </insert>
+  <insert id="batchUpsert" parameterType="map">
+    <!--
+      WARNING - @mbg.generated
+      此元素由 MyBatis Generator 自动生成，请勿修改。
+    -->
+    insert into test_stock
+    (ID, stock, goods_name, goods_num, supplier_id)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.stock,jdbcType=INTEGER}, #{item.goodsName,jdbcType=VARCHAR}, 
+        #{item.goodsNum,jdbcType=VARCHAR}, #{item.supplierId,jdbcType=INTEGER})
+    </foreach>
+    on duplicate key update 
+    ID = values(ID),
+    stock = values(stock),
+    goods_name = values(goods_name),
+    goods_num = values(goods_num),
+    supplier_id = values(supplier_id)
+  </insert>
+</mapper>
