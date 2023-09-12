@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="info" targetRuntime="MyBatis3">
+        <!-- https://github.com/itfsw/mybatis-generator-plugin -->
+        <!-- Mapper注解插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.MapperAnnotationPlugin">
+            <!-- @Mapper 默认开启 -->
+            <property name="@Mapper" value="true"/>
+        </plugin>
+
+
+        <!-- Lombok插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.LombokPlugin">
+            <!-- @Data 默认开启,同时插件会对子类自动附加@EqualsAndHashCode(callSuper = true)，@ToString(callSuper = true) -->
+            <property name="@Data" value="true"/>
+            <!-- @Builder 必须在 Lombok 版本 >= 1.18.2 的情况下开启，对存在继承关系的类自动替换成@SuperBuilder -->
+            <property name="@Builder" value="true"/>
+            <!-- @NoArgsConstructor 和 @AllArgsConstructor 使用规则和Lombok一致 -->
+            <property name="@AllArgsConstructor" value="true"/>
+            <property name="@NoArgsConstructor" value="true"/>
+            <!-- @Getter、@Setter、@Accessors 等使用规则参见官方文档 -->
+            <property name="@Accessors(chain = true)" value="true"/>
+            <!-- 临时解决IDEA工具对@SuperBuilder的不支持问题，开启后(默认未开启)插件在遇到@SuperBuilder注解时会调用ModelBuilderPlugin来生成相应的builder代码 -->
+            <property name="supportSuperBuilderForIdea" value="false"/>
+        </plugin>
+
+        <!-- 查询单条数据插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.SelectOneByExamplePlugin"/>
+
+        <!-- Example Criteria 增强插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ExampleEnhancedPlugin">
+            <!-- 是否支持已经过时的andIf方法（推荐使用when代替），默认支持 -->
+            <property name="enableAndIf" value="false"/>
+        </plugin>
+        <!-- 批量插入插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.BatchInsertPlugin">
+            <!--
+            开启后可以实现官方插件根据属性是否为空决定是否插入该字段功能
+            ！需开启allowMultiQueries=true多条sql提交操作，所以不建议使用！插件默认不开启
+            -->
+            <property name="allowMultiQueries" value="false"/>
+        </plugin>
+
+        <!-- 存在即更新插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.UpsertPlugin">
+            <!--
+            支持upsertByExample，upsertByExampleSelective操作
+            ！需开启allowMultiQueries=true多条sql提交操作，所以不建议使用！插件默认不开启
+            -->
+            <property name="allowMultiQueries" value="false"/>
+            <!--
+            开启批量功能，支持batchUpsert,batchUpsertWithBLOBs,batchUpserSelective
+            ！这几个方法中无法支持IncrementsPlugin的方法！插件默认不开启
+            -->
+            <property name="allowBatchUpsert" value="true"/>
+        </plugin>
+
+        <!-- 数据Model属性对应Column获取插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ModelColumnPlugin"/>
+
+        <!-- 状态枚举生成插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.EnumTypeStatusPlugin">
+            <!-- 是否开启自动扫描根据约定注释格式生成枚举，默认true -->
+            <property name="autoScan" value="true"/>
+            <!-- 是否开启自动扫描根据约定注释格式生成枚举，默认true  注释[success(0):成功, fail(1):失败]-->
+        </plugin>
+
+        <!-- Selective选择插入更新增强插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.SelectiveEnhancedPlugin"/>
+
+        <!-- 查询结果选择性返回插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.SelectSelectivePlugin"/>
+
+        <!-- 逻辑删除插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.LogicalDeletePlugin">
+            <!-- 这里配置的是全局逻辑删除列和逻辑删除值，当然在table中配置的值会覆盖该全局配置 -->
+            <!-- 逻辑删除列类型只能为数字、字符串或者布尔类型 -->
+            <property name="logicalDeleteColumn" value="del"/>
+            <!-- 逻辑删除-已删除值 -->
+            <property name="logicalDeleteValue" value="1"/>
+            <!-- 逻辑删除-未删除值 -->
+            <property name="logicalUnDeleteValue" value="0"/>
+
+            <!-- 是否生成逻辑删除常量(只有开启时 logicalDeleteConstName、logicalUnDeleteConstName 才生效) -->
+            <property name="enableLogicalDeleteConst" value="true"/>
+            <!-- 逻辑删除常量名称，不配置默认为 IS_DELETED -->
+            <property name="logicalDeleteConstName" value="IS_DELETED"/>
+            <!-- 逻辑删除常量（未删除）名称，不配置默认为 NOT_DELETED -->
+            <property name="logicalUnDeleteConstName" value="NOT_DELETED"/>
+            <!--            <table tableName="tb">-->
+            <!--                &lt;!&ndash; 这里可以单独表配置逻辑删除列和删除值，覆盖全局配置 &ndash;&gt;-->
+            <!--                <property name="logicalDeleteColumn" value="del"/>-->
+            <!--                <property name="logicalDeleteValue" value="1"/>-->
+            <!--                <property name="logicalUnDeleteValue" value="-1"/>-->
+            <!--            </table>-->
+        </plugin>
+
+        <!-- 自定义注释插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.CommentPlugin">
+            <!-- 自定义模板路径 -->
+            <property name="template" value="dev/generator/mybatis-generator-comment.ftl"/>
+        </plugin>
+
+        <!-- Example 目标包修改插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ExampleTargetPlugin">
+            <!-- 修改Example类生成到目标包下 -->
+            <property name="targetPackage" value="com.umbrella.demo.entity.example"/>
+        </plugin>
+
+
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection
+                driverClass="com.mysql.cj.jdbc.Driver"
+                connectionURL="jdbc:mysql://120.48.86.143:3306/test"
+                userId="root" password="Doalso@2311#$9"
+        >
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+        NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+
+        <!-- targetProject:生成PO类的位置 -->
+        <javaModelGenerator
+                targetPackage="com.umbrella.demo.entity"
+                targetProject="src/main/java"
+        >
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- targetProject:mapper映射文件生成的位置 -->
+        <sqlMapGenerator
+                targetPackage="com.umbrella.demo.mapper"
+                targetProject="src/main/resources"
+        >
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- targetPackage：mapper接口生成的位置 -->
+        <javaClientGenerator
+                type="XMLMAPPER"
+                targetPackage="com.umbrella.demo.mapper"
+                targetProject="src/main/java"
+        >
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!--指定数据库表  tableName % 生成所有表-->
+        <!--        <table-->
+        <!--                tableName="%" schema="SCOTT"-->
+        <!--                enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"-->
+        <!--                enableInsert="true" enableSelectByPrimaryKey="true" selectByPrimaryKeyQueryId="true"-->
+        <!--                enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--                enableSelectByExample="true" selectByExampleQueryId="true"-->
+        <!--        >-->
+        <!--            &lt;!&ndash; ibatis id 在返回值里   mybatis id 在对象中获取&ndash;&gt;-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+        <!--指定数据库表 指定单个表生成,tableName="表名"-->
+        <table
+                tableName="test_stock"
+                enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"
+                enableInsert="true" enableSelectByPrimaryKey="true" selectByPrimaryKeyQueryId="true"
+                enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+                enableSelectByExample="true" selectByExampleQueryId="true"
+        >
+            <!-- ibatis id 在返回值里   mybatis id 在对象中获取-->
+            <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        </table>
+    </context>
+</generatorConfiguration>
