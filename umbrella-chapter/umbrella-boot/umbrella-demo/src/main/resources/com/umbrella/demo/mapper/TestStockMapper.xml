@@ -103,6 +103,14 @@
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
+    <if test="rows != null">
+      <if test="offset != null">
+        limit ${offset}, ${rows}
+      </if>
+      <if test="offset == null">
+        limit ${rows}
+      </if>
+    </if>
   </select>
   <select id="selectByExampleSelective" parameterType="map" resultMap="BaseResultMap">
     <!--
@@ -115,7 +123,7 @@
     </if>
     'true' as QUERYID,
     <choose>
-      <when test="selective != null and selective.length > 0">
+      <when test="selective != null and selective.length &gt; 0">
         <foreach collection="selective" item="column" separator=",">
           ${column.aliasedEscapedColumnName}
         </foreach>
@@ -130,6 +138,14 @@
     </if>
     <if test="example != null and example.orderByClause != null">
       order by ${example.orderByClause}
+    </if>
+    <if test="example != null and example.rows != null">
+      <if test="example.offset != null">
+        limit ${example.offset}, ${example.rows}
+      </if>
+      <if test="example.offset == null">
+        limit ${example.rows}
+      </if>
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -150,7 +166,7 @@
     select
     'true' as QUERYID,
     <choose>
-      <when test="selective != null and selective.length > 0">
+      <when test="selective != null and selective.length &gt; 0">
         <foreach collection="selective" item="column" separator=",">
           ${column.aliasedEscapedColumnName}
         </foreach>
@@ -197,7 +213,7 @@
     -->
     insert into test_stock
     <choose>
-      <when test="selective != null and selective.length > 0">
+      <when test="selective != null and selective.length &gt; 0">
         <foreach close=")" collection="selective" item="column" open="(" separator=",">
           ${column.escapedColumnName}
         </foreach>
@@ -225,7 +241,7 @@
     </choose>
     values
     <choose>
-      <when test="selective != null and selective.length > 0">
+      <when test="selective != null and selective.length &gt; 0">
         <foreach close=")" collection="selective" item="column" open="(" separator=",">
           #{record.${column.javaProperty},jdbcType=${column.jdbcType}}
         </foreach>
@@ -269,7 +285,7 @@
     update test_stock
     SET
     <choose>
-      <when test="selective != null and selective.length > 0">
+      <when test="selective != null and selective.length &gt; 0">
         <foreach collection="selective" item="column" separator=",">
           ${column.escapedColumnName} = #{record.${column.javaProperty},jdbcType=${column.jdbcType}}
         </foreach>
@@ -321,7 +337,7 @@
     update test_stock
     SET
     <choose>
-      <when test="selective != null and selective.length > 0">
+      <when test="selective != null and selective.length &gt; 0">
         <foreach collection="selective" item="column" separator=",">
           ${column.escapedColumnName} = #{record.${column.javaProperty},jdbcType=${column.jdbcType}}
         </foreach>
@@ -382,7 +398,7 @@
     select
     'true' as QUERYID,
     <choose>
-      <when test="selective != null and selective.length > 0">
+      <when test="selective != null and selective.length &gt; 0">
         <foreach collection="selective" item="column" separator=",">
           ${column.aliasedEscapedColumnName}
         </foreach>
@@ -453,7 +469,7 @@
     -->
     insert into test_stock
     <choose>
-      <when test="selective != null and selective.length > 0">
+      <when test="selective != null and selective.length &gt; 0">
         <foreach close=")" collection="selective" item="column" open="(" separator=",">
           ${column.escapedColumnName}
         </foreach>
@@ -481,7 +497,7 @@
     </choose>
     values
     <choose>
-      <when test="selective != null and selective.length > 0">
+      <when test="selective != null and selective.length &gt; 0">
         <foreach close=")" collection="selective" item="column" open="(" separator=",">
           #{record.${column.javaProperty},jdbcType=${column.jdbcType}}
         </foreach>
@@ -508,7 +524,7 @@
     </choose>
     on duplicate key update 
     <choose>
-      <when test="selective != null and selective.length > 0">
+      <when test="selective != null and selective.length &gt; 0">
         <foreach collection="selective" item="column" separator=",">
           ${column.escapedColumnName} = #{record.${column.javaProperty},jdbcType=${column.jdbcType}}
         </foreach>

@@ -23,6 +23,16 @@ public class TestStockExample {
     /**
      * @mbg.generated
      */
+    protected Integer offset;
+
+    /**
+     * @mbg.generated
+     */
+    protected Integer rows;
+
+    /**
+     * @mbg.generated
+     */
     public TestStockExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
@@ -127,6 +137,8 @@ public class TestStockExample {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
+        rows = null;
+        offset = null;
     }
 
     /**
@@ -164,6 +176,60 @@ public class TestStockExample {
      */
     public TestStockExample distinct(boolean distinct) {
         this.setDistinct(distinct);
+        return this;
+    }
+
+    /**
+     * @mbg.generated
+     */
+    public void setOffset(Integer offset) {
+        this.offset = offset;
+    }
+
+    /**
+     * @mbg.generated
+     */
+    public Integer getOffset() {
+        return this.offset;
+    }
+
+    /**
+     * @mbg.generated
+     */
+    public void setRows(Integer rows) {
+        this.rows = rows;
+    }
+
+    /**
+     * @mbg.generated
+     */
+    public Integer getRows() {
+        return this.rows;
+    }
+
+    /**
+     * @mbg.generated
+     */
+    public TestStockExample limit(Integer rows) {
+        this.rows = rows;
+        return this;
+    }
+
+    /**
+     * @mbg.generated
+     */
+    public TestStockExample limit(Integer offset, Integer rows) {
+        this.offset = offset;
+        this.rows = rows;
+        return this;
+    }
+
+    /**
+     * @mbg.generated
+     */
+    public TestStockExample page(Integer page, Integer pageSize) {
+        this.offset = page * pageSize;
+        this.rows = pageSize;
         return this;
     }
 
