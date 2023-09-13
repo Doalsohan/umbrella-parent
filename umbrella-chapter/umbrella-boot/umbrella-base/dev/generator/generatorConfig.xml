@@ -107,7 +107,7 @@
         <!-- Example 目标包修改插件 -->
         <plugin type="com.itfsw.mybatis.generator.plugins.ExampleTargetPlugin">
             <!-- 修改Example类生成到目标包下 -->
-            <property name="targetPackage" value="com.umbrella.demo.entity.example"/>
+            <property name="targetPackage" value="com.umbrella.base.entity.example"/>
         </plugin>
 
         <!-- MySQL分页插件 -->
@@ -120,7 +120,7 @@
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection
                 driverClass="com.mysql.cj.jdbc.Driver"
-                connectionURL="jdbc:mysql://120.48.86.143:3306/test"
+                connectionURL="jdbc:mysql://120.48.86.143:3306/umbrella"
                 userId="root" password="Doalso@2311#$9"
         >
             <property name="nullCatalogMeansCurrent" value="true"/>
@@ -133,7 +133,7 @@
 
         <!-- targetProject:生成PO类的位置 -->
         <javaModelGenerator
-                targetPackage="com.umbrella.demo.entity"
+                targetPackage="com.umbrella.base.entity"
                 targetProject="src/main/java"
         >
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
@@ -144,7 +144,7 @@
 
         <!-- targetProject:mapper映射文件生成的位置 -->
         <sqlMapGenerator
-                targetPackage="com.umbrella.demo.mapper"
+                targetPackage="com.umbrella.base.mapper"
                 targetProject="src/main/resources"
         >
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
@@ -154,7 +154,7 @@
         <!-- targetPackage：mapper接口生成的位置 -->
         <javaClientGenerator
                 type="XMLMAPPER"
-                targetPackage="com.umbrella.demo.mapper"
+                targetPackage="com.umbrella.base.mapper"
                 targetProject="src/main/java"
         >
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
@@ -173,7 +173,7 @@
         <!--        </table>-->
         <!--指定数据库表 指定单个表生成,tableName="表名"-->
         <table
-                tableName="test_stock"
+                tableName="umbrella_user"
                 enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"
                 enableInsert="true" enableSelectByPrimaryKey="true" selectByPrimaryKeyQueryId="true"
                 enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
