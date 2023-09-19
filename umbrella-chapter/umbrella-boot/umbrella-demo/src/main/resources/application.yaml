@@ -13,7 +13,7 @@ spring:
       password: N4cTe-C-OtslAeAYaZMg
   data:
     mongodb:
-      uri: mongodb://wfc:cp9TmGi5QoARVld@120.48.86.143:27017/test
+      uri: mongodb://120.48.86.143:27017/test
 
 rocketmq:
   name-server: 120.48.86.143:9876
