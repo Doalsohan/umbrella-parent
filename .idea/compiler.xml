@@ -2,15 +2,18 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="umbrella-business-service" />
         <module name="umbrella-cloud-discovery" />
-        <module name="umbrella-boot" />
         <module name="umbrella-dubbo-consumer" />
         <module name="umbrella-dubbo-producer" />
+        <module name="umbrella-demo" />
+        <module name="umbrella-business-service" />
+        <module name="umbrella-core" />
+        <module name="umbrella-base" />
       </profile>
     </annotationProcessing>
   </component>

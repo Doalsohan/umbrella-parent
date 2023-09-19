@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>umbrella-chapter</module>
+        <module>umbrella-tools</module>
     </modules>
 
     <groupId>com.umbrella</groupId>
