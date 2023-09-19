@@ -13,6 +13,7 @@ public class BusinessException extends RuntimeException {
 
     public BusinessException(IResultCode resultCode) {
         super(resultCode.getMessage());
+        this.resultCode = resultCode;
     }
 
     public BusinessException(String message) {
@@ -21,6 +22,7 @@ public class BusinessException extends RuntimeException {
 
     public BusinessException(IResultCode resultCode, Throwable cause) {
         super(resultCode.getMessage(), cause);
+        this.resultCode = resultCode;
     }
 
     public BusinessException(String message, Throwable cause) {
@@ -33,6 +35,7 @@ public class BusinessException extends RuntimeException {
 
     public BusinessException(IResultCode resultCode, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(resultCode.getMessage(), cause, enableSuppression, writableStackTrace);
+        this.resultCode = resultCode;
     }
 
     public BusinessException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {

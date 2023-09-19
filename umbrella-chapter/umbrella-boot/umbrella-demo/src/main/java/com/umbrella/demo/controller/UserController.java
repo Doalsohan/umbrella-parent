@@ -1,5 +1,8 @@
 package com.umbrella.demo.controller;
 
+import com.umbrella.core.api.IResultCode;
+import com.umbrella.core.api.ResultCode;
+import com.umbrella.core.exception.BusinessException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +18,8 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User get(@PathVariable("id") String id) {
-        return new User(1L, "lyTongXue");
+//        return new User(1L, "lyTongXue");
+        throw new BusinessException(ResultCode.FAILURE);
     }
 
 
