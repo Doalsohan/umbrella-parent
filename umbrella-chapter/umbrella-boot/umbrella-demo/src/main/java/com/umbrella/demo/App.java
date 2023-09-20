@@ -1,6 +1,7 @@
 package com.umbrella.demo;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.LocaleUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -10,12 +11,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
-import java.util.Locale;
+import java.util.Arrays;
 
 /**
  * Hello world!
@@ -42,18 +41,10 @@ public class App {
 
     @Configuration
     static class WebConfig implements WebMvcConfigurer {
-        @Override
-        public void addInterceptors(InterceptorRegistry registry) {
-            LocaleChangeInterceptor localeInterceptor = new LocaleChangeInterceptor();
-            localeInterceptor.setParamName("lang");
-            registry.addInterceptor(localeInterceptor);
-        }
-
-
         @Bean
         public LocaleResolver localeResolver() {
-            SessionLocaleResolver localeResolver = new SessionLocaleResolver();
-            localeResolver.setDefaultLocale(Locale.CHINA);
+            AcceptHeaderLocaleResolver localeResolver = new AcceptHeaderLocaleResolver();
+            localeResolver.setSupportedLocales(Arrays.asList(LocaleUtils.toLocale("zh"),LocaleUtils.toLocale("en")));
             return localeResolver;
         }
 
