@@ -1,11 +1,6 @@
 server:
   port: 4001
 spring:
-  datasource:
-    url: jdbc:mysql://120.48.86.143:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
-    username: root
-    password: Doalso@2311#$9
-    driver-class-name: com.mysql.cj.jdbc.Driver
   elasticsearch:
     rest:
       uris: https://120.48.86.143：9200
