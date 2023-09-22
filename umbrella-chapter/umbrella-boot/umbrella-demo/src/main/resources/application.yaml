@@ -1,6 +1,22 @@
 server:
   port: 4001
 spring:
+  datasource:
+    dynamic:
+      primary: master
+      strict: false
+      datasource:
+        master:
+          url: jdbc:mysql://120.48.86.143:3306/um_customer?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+          username: root
+          password: Doalso@2311#$9
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        slave_1:
+          url: jdbc:mysql://120.48.86.143:3306/um_customer_slave?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+          username: root
+          password: Doalso@2311#$9
+          driver-class-name: com.mysql.cj.jdbc.Driver
+
   elasticsearch:
     rest:
       uris: https://120.48.86.143：9200
@@ -26,19 +42,3 @@ rocketmq:
     retry-next-server: true
     #异步消息发送失败重试的次数
     retry-times-when-send-async-failed: 3
-
-
-
-# 自定义数据源
-app:
-  datasource:
-    master:
-      jdbc-url: jdbc:mysql://120.48.86.143:3306/um_customer?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      username: root
-      password: Doalso@2311#$9
-      driver-class-name: com.mysql.cj.jdbc.Driver
-    slave:
-      jdbc-url: jdbc:mysql://120.48.86.143:3306/um_customer_slave?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      username: root
-      password: Doalso@2311#$9
-      driver-class-name: com.mysql.cj.jdbc.Driver
