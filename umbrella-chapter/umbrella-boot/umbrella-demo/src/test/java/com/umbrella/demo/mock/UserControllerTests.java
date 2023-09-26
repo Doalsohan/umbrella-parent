@@ -3,6 +3,7 @@ package com.umbrella.demo.mock;
 import cn.hutool.json.JSONUtil;
 import com.umbrella.demo.AppTests;
 import com.umbrella.demo.entity.Pet;
+import com.umbrella.demo.framework.DefaultServiceLocator;
 import com.umbrella.demo.service.EchoService;
 import com.umbrella.demo.service.HelloService;
 import com.umbrella.demo.service.PetStoreService;
@@ -26,6 +27,8 @@ public class UserControllerTests extends AppTests {
     private EchoService echoService;
     @Autowired
     private HelloService helloService;
+    @Autowired
+    private DefaultServiceLocator serviceLocator;
     /**
      * <p>
      * @BeforeEach：在每个单元测试方法执行前都执行一遍
@@ -70,6 +73,8 @@ public class UserControllerTests extends AppTests {
     void helloServiceTest() {
         String say = helloService.say("hhhhhhh");
         System.out.println(say);
+
+        System.out.println(serviceLocator.createHelloServiceInstance().say("模型的笑容"));
     }
 
 }
