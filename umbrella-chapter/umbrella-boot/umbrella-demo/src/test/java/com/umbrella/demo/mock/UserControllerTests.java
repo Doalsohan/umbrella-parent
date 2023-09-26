@@ -1,17 +1,24 @@
 package com.umbrella.demo.mock;
 
+import cn.hutool.json.JSONUtil;
 import com.umbrella.demo.AppTests;
+import com.umbrella.demo.entity.Pet;
 import com.umbrella.demo.service.EchoService;
+import com.umbrella.demo.service.PetStoreService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class UserControllerTests extends AppTests {
     @MockBean
@@ -46,6 +53,16 @@ public class UserControllerTests extends AppTests {
                 .getContentAsString(StandardCharsets.UTF_8);
 
         Assertions.assertTrue(result.startsWith("看山"));
+    }
+
+
+    @Test
+    void springTest() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:config/ApplicationContext.xml");
+        PetStoreService storeService = context.getBean(PetStoreService.class);
+        List<Pet> list = storeService.list();
+        System.out.println(JSONUtil.toJsonStr(list));
+
     }
 
 }

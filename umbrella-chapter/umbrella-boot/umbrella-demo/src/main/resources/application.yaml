@@ -21,9 +21,7 @@ spring:
     uris: https://120.48.86.143:9200
     username: elastic
     password: N4cTe-C-OtslAeAYaZMg
-    restclient:
-      ssl:
-        bundle: ""
+
   data:
     mongodb:
       uri: mongodb://120.48.86.143:27017/test
