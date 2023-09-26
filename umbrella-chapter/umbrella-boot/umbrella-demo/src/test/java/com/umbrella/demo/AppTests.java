@@ -1,6 +1,8 @@
 package com.umbrella.demo;
 
 import cn.hutool.core.lang.generator.SnowflakeGenerator;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,6 +12,9 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static java.time.Duration.ofSeconds;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -112,5 +117,30 @@ public class AppTests {
     @DisplayName("参数化测试")
     void paramTest(int a) {
         assertTrue(a > 0 && a < 4);
+    }
+
+
+    @Test
+    @DisplayName("JSON属性追加测试")
+    void jsonTest() {
+        Map<String,String> map = new HashMap<>();
+        map.put("name","张三");
+        map.put("age","18");
+        map.put("gender","F");
+        String jsonStr = JSONUtil.toJsonStr(map);
+
+        System.out.println(jsonStr);
+
+        JSONObject jsonObject = JSONUtil.parseObj(jsonStr);
+        jsonObject.set("userId","jshg3848dhhys");
+        jsonObject.set("certType",1);
+        System.out.println(JSONUtil.toJsonStr(jsonObject));
+
+
+
+        jsonObject.set("userId",null);
+        jsonObject.set("certType",null);
+
+        System.out.println(JSONUtil.toJsonStr(jsonObject));
     }
 }
