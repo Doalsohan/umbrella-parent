@@ -1,5 +1,6 @@
 package com.umbrella.demo;
 
+import com.umbrella.demo.framework.UmbrellaSpringApplicationHook;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.LocaleUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +26,7 @@ import java.util.Arrays;
 @SpringBootApplication
 public class App {
     public static void main( String[] args ) {
+        SpringApplication.withHook(new UmbrellaSpringApplicationHook(),()-> System.out.println("Starting SpringApp-Hook"));
         SpringApplication.run(App.class,args);
     }
 

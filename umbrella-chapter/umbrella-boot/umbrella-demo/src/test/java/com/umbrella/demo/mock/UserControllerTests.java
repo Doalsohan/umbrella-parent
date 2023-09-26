@@ -4,6 +4,7 @@ import cn.hutool.json.JSONUtil;
 import com.umbrella.demo.AppTests;
 import com.umbrella.demo.entity.Pet;
 import com.umbrella.demo.service.EchoService;
+import com.umbrella.demo.service.HelloService;
 import com.umbrella.demo.service.PetStoreService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +24,8 @@ import java.util.List;
 public class UserControllerTests extends AppTests {
     @MockBean
     private EchoService echoService;
-
+    @Autowired
+    private HelloService helloService;
     /**
      * <p>
      * @BeforeEach：在每个单元测试方法执行前都执行一遍
@@ -62,7 +64,12 @@ public class UserControllerTests extends AppTests {
         PetStoreService storeService = context.getBean(PetStoreService.class);
         List<Pet> list = storeService.list();
         System.out.println(JSONUtil.toJsonStr(list));
+    }
 
+    @Test
+    void helloServiceTest() {
+        String say = helloService.say("hhhhhhh");
+        System.out.println(say);
     }
 
 }

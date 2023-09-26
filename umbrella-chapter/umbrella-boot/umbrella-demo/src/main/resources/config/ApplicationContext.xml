@@ -11,6 +11,11 @@
         <!-- additional collaborators and configuration for this bean go here -->
     </bean>
 
+    <bean id="clientService" class="com.umbrella.demo.framework.ClientService" factory-method="createInstance"/>
+
+    <bean id="serviceLocator" class="com.umbrella.demo.framework.DefaultServiceLocator"/>
+
+    <bean id="helloService" factory-bean="serviceLocator" factory-method="createHelloServiceInstance"/>
     <!-- more bean definitions for services go here -->
 
 </beans>
