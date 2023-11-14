@@ -1,7 +1,10 @@
 package com.umbrella.demo.service.impl;
 
+import cn.hutool.extra.spring.SpringUtil;
 import com.umbrella.demo.entity.Pet;
+import com.umbrella.demo.events.TestEvent;
 import com.umbrella.demo.service.PetStoreService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +16,7 @@ public class PetStoreServiceImpl implements PetStoreService {
      * @return
      */
     @Override
+    @Transactional
     public List<Pet> list() {
         List<Pet> pets = new ArrayList<>();
         for(long i=1;i<10;i++){
@@ -25,6 +29,7 @@ public class PetStoreServiceImpl implements PetStoreService {
             pet.setBreed(Byte.valueOf("1"));
             pets.add(pet);
         }
+        SpringUtil.publishEvent(new TestEvent("dasjd"));
         return pets;
     }
 
