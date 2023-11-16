@@ -15,6 +15,7 @@
     <modules>
         <module>umbrella-demo</module>
         <module>umbrella-base</module>
+        <module>umbrella-kotlin</module>
     </modules>
 
     <properties>
