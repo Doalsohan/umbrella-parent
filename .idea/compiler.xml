@@ -7,10 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="umbrella-crypto" />
         <module name="umbrella-cloud-discovery" />
         <module name="umbrella-dubbo-consumer" />
         <module name="umbrella-dubbo-producer" />
         <module name="umbrella-demo" />
+        <module name="umbrella-kotlin" />
         <module name="umbrella-business-service" />
         <module name="umbrella-core" />
         <module name="umbrella-base" />
