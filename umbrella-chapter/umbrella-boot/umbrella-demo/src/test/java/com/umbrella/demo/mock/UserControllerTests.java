@@ -41,7 +41,7 @@ public class UserControllerTests extends AppTests {
      * </p>
      */
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         Mockito.when(echoService.echo(Mockito.any())).thenReturn("看水说："+System.currentTimeMillis());
     }
 

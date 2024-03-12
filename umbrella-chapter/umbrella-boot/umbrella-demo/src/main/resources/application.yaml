@@ -25,6 +25,9 @@ spring:
   data:
     mongodb:
       uri: mongodb://120.48.86.143:27017/test
+    redis:
+      host: localhost
+      database: 0
 
 rocketmq:
   name-server: 120.48.86.143:9876

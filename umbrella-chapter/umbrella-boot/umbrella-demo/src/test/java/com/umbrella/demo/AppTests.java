@@ -32,7 +32,7 @@ public class AppTests {
     protected SnowflakeGenerator  snowflakeGenerator;
 
     @BeforeEach
-    private void setUp() {
+    public void setUp() {
         snowflakeGenerator = new SnowflakeGenerator();
     }
 
