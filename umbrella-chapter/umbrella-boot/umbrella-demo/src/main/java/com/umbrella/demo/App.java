@@ -2,6 +2,8 @@ package com.umbrella.demo;
 
 import cn.hutool.extra.spring.EnableSpringUtil;
 import com.umbrella.demo.framework.UmbrellaSpringApplicationHook;
+import com.umbrella.demo.service.MultipleEventService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.LocaleUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +15,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -24,6 +28,7 @@ import java.util.Arrays;
  * Hello world!
  *
  */
+@EnableScheduling
 @EnableAsync
 @EnableSpringUtil
 @ImportResource(locations = "classpath:/config/ApplicationContext.xml")
@@ -55,6 +60,18 @@ public class App {
             localeResolver.setSupportedLocales(Arrays.asList(LocaleUtils.toLocale("zh"),LocaleUtils.toLocale("en")));
             return localeResolver;
         }
+    }
 
+
+    @Component
+    @AllArgsConstructor
+    static class ScheduleConfig {
+
+        private final MultipleEventService multipleEventService;
+
+        @Scheduled(cron = "*/5 * * * * ?")
+        public void doSchedule() {
+            multipleEventService.multipleListener();
+        }
     }
 }
