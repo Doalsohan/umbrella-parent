@@ -1,7 +1,12 @@
 package com.umbrella.demo;
 
+import cn.hutool.core.lang.generator.SnowflakeGenerator;
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.extra.spring.EnableSpringUtil;
+import cn.hutool.extra.spring.SpringUtil;
+import com.umbrella.demo.events.MQTestEvent;
 import com.umbrella.demo.framework.UmbrellaSpringApplicationHook;
+import com.umbrella.demo.pojo.BullSmallTrumpetOrderPojo;
 import com.umbrella.demo.service.MultipleEventService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +27,9 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Hello world!
@@ -68,10 +75,23 @@ public class App {
     static class ScheduleConfig {
 
         private final MultipleEventService multipleEventService;
+        private final AtomicInteger atomicInteger = new AtomicInteger();
+
+//        @Scheduled(cron = "*/5 * * * * ?")
+//        public void doSchedule() {
+//            multipleEventService.multipleListener();
+//        }
 
         @Scheduled(cron = "*/5 * * * * ?")
-        public void doSchedule() {
-            multipleEventService.multipleListener();
+        public void sendOrder() {
+            BullSmallTrumpetOrderPojo bullSmallTrumpetOrder = BullSmallTrumpetOrderPojo.builder()
+                    .id(new SnowflakeGenerator().next())
+                    .price(RandomUtil.randomBigDecimal(BigDecimal.valueOf(100)))
+                    .count(RandomUtil.randomInt(1, 99))
+                    .queueKey("BULL_SMALL_TRUMPET_ORDER")
+                    .order(atomicInteger.getAndIncrement())
+                    .build();
+            SpringUtil.publishEvent(new MQTestEvent(bullSmallTrumpetOrder));
         }
     }
 }

@@ -16,6 +16,8 @@ public class SignTest {
         System.out.println("----------------------------------------------");
 
         System.out.println(Base64.encode(keyPair.getPublic().getEncoded()));
+        System.out.println("----------------------------------------------");
 
+        System.out.println(Base64.encode(SecureUtil.aes().getSecretKey().getEncoded()));
     }
 }
