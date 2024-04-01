@@ -45,3 +45,29 @@ rocketmq:
     retry-next-server: true
     #异步消息发送失败重试的次数
     retry-times-when-send-async-failed: 3
+
+justauth:
+  enabled: true
+  cache:
+    type: redis
+  extend:
+    enum-class: com.umbrella.justauth.support.extend.ExtendSource
+    config:
+      HUIONE:
+        request-class: com.umbrella.justauth.support.extend.ExtendHuioneRequest
+        client-id: 243r4343
+        client-secret: 243red34342
+        redirect-uri: https://oauth.chatme.com/oauth/huione/callback
+  type:
+    GOOGLE:
+      client-id: 124834461273-qse1cno6tkttqjb4pk1pe3lsivhvs8go.apps.googleusercontent.com
+      client-secret: 124834461273-qse1cno6tkttqjb4pk1pe3lsivhvs8go.apps.googleusercontent.com
+      redirect-uri: http://localhost:4001/oauth/GOOGLE/callback
+    FACEBOOK:
+      client-id: 243r4343
+      client-secret: 243red34342
+      redirect-uri: https://oauth.chatme.com/oauth/facebook/callback
+    TWITTER:
+      client-id: 243r4343
+      client-secret: 243red34342
+      redirect-uri: https://oauth.chatme.com/oauth/twitter/callback

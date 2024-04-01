@@ -4,6 +4,8 @@ import cn.hutool.core.lang.generator.SnowflakeGenerator;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.extra.spring.EnableSpringUtil;
 import cn.hutool.extra.spring.SpringUtil;
+import com.umbrella.demo.config.CommonUtils;
+import com.umbrella.demo.config.Constants;
 import com.umbrella.demo.events.MQTestEvent;
 import com.umbrella.demo.framework.UmbrellaSpringApplicationHook;
 import com.umbrella.demo.pojo.BullSmallTrumpetOrderPojo;
@@ -11,6 +13,9 @@ import com.umbrella.demo.service.MultipleEventService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.LocaleUtils;
+import org.redisson.api.RBucket;
+import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -28,6 +33,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -50,11 +56,16 @@ public class App {
     @Slf4j
     @Component
     static class ConfigPriorityRunner implements ApplicationRunner {
+        @Autowired
+        private RedissonClient redissonClient;
         @Value("${name}")
         private String name;
         @Override
         public void run(ApplicationArguments args) throws Exception {
             log.info(name);
+            BigDecimal bigDecimal = RandomUtil.randomBigDecimal();
+            redissonClient.getBucket(CommonUtils.dailyRedisKey(Constants.BULL_DAILY_PRICE_KEY)).set(bigDecimal);
+            redissonClient.getBucket(CommonUtils.dailyRedisKey(Constants.BULL_DAILY_CURRENT_PRICE_KEY)).set(bigDecimal);
         }
     }
 
@@ -76,17 +87,19 @@ public class App {
 
         private final MultipleEventService multipleEventService;
         private final AtomicInteger atomicInteger = new AtomicInteger();
+        private final RedissonClient redissonClient;
 
 //        @Scheduled(cron = "*/5 * * * * ?")
 //        public void doSchedule() {
 //            multipleEventService.multipleListener();
 //        }
 
-        @Scheduled(cron = "*/5 * * * * ?")
+//        @Scheduled(cron = "*/5 * * * * ?")
         public void sendOrder() {
+            RBucket<BigDecimal> bucket = redissonClient.getBucket(CommonUtils.dailyRedisKey(Constants.BULL_DAILY_CURRENT_PRICE_KEY));
             BullSmallTrumpetOrderPojo bullSmallTrumpetOrder = BullSmallTrumpetOrderPojo.builder()
                     .id(new SnowflakeGenerator().next())
-                    .price(RandomUtil.randomBigDecimal(BigDecimal.valueOf(100)))
+                    .price(bucket.get().setScale(4, RoundingMode.DOWN))
                     .count(RandomUtil.randomInt(1, 99))
                     .queueKey("BULL_SMALL_TRUMPET_ORDER")
                     .order(atomicInteger.getAndIncrement())

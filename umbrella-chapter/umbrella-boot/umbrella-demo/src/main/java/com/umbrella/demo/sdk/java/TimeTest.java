@@ -2,10 +2,13 @@ package com.umbrella.demo.sdk.java;
 
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
+import org.apache.commons.lang3.time.DateUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.Objects;
 
 public class TimeTest {
@@ -62,6 +65,24 @@ public class TimeTest {
         System.out.println(DateUtil.yesterday());
 
         System.out.println(DateUtil.beginOfDay(DateUtil.yesterday()));
+
+
+
+
+        //方法一
+        long milliSecondsLeftToday = 86400000 - DateUtils.getFragmentInMilliseconds(Calendar.getInstance(), Calendar.DATE);
+        long secondsLeftToday = 86400 - DateUtils.getFragmentInSeconds(Calendar.getInstance(), Calendar.DATE);
+        System.out.println("当天剩余毫秒1：" + milliSecondsLeftToday);
+        System.out.println("当天剩余秒1：" + secondsLeftToday);
+
+
+
+        //方法三:LocalDateTime和ChronoUnit为1.8新增
+        LocalDateTime midnight = LocalDateTime.now().plusDays(1).withHour(0).withMinute(0).withSecond(0).withNano(0);
+        long millSeconds = ChronoUnit.MILLIS.between(LocalDateTime.now(),midnight);
+        long seconds = ChronoUnit.SECONDS.between(LocalDateTime.now(), midnight);
+        System.out.println("当天剩余毫秒3：" + millSeconds);
+        System.out.println("当天剩余秒3：" + seconds);
     }
 
 

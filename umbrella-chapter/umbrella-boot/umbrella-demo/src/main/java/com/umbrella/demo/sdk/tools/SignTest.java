@@ -11,13 +11,13 @@ public class SignTest {
     public static void main(String[] args) {
 
         KeyPair keyPair = SecureUtil.generateKeyPair(SignAlgorithm.SHA256withRSA.getValue());
-        System.out.println(Base64.encode(keyPair.getPrivate().getEncoded()));
+        System.out.println("privateKey: " + Base64.encode(keyPair.getPrivate().getEncoded()));
 
         System.out.println("----------------------------------------------");
 
-        System.out.println(Base64.encode(keyPair.getPublic().getEncoded()));
+        System.out.println("publicKey: " + Base64.encode(keyPair.getPublic().getEncoded()));
         System.out.println("----------------------------------------------");
 
-        System.out.println(Base64.encode(SecureUtil.aes().getSecretKey().getEncoded()));
+        System.out.println("aesKey: " + Base64.encode(SecureUtil.aes().getSecretKey().getEncoded()));
     }
 }

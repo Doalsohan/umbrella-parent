@@ -16,6 +16,7 @@
         <module name="umbrella-business-service" />
         <module name="umbrella-core" />
         <module name="umbrella-base" />
+        <module name="umbrella-justauth-starter" />
       </profile>
     </annotationProcessing>
   </component>

@@ -1,5 +1,7 @@
 package com.umbrella.demo.config;
 
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
@@ -70,5 +72,17 @@ public class CommonUtils {
             }
         }
         return sbd.toString();
+    }
+
+
+
+    /**
+     * 组装缓存Key
+     * @param baseKey
+     * @return
+     */
+    public static String dailyRedisKey(String baseKey) {
+        String daily = DateUtil.format(DateUtil.beginOfDay(DateUtil.date()), DatePattern.NORM_DATE_PATTERN);
+        return baseKey+daily;
     }
 }
